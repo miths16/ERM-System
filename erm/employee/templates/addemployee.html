@@ -1,0 +1,89 @@
+{% extends 'login_base.html' %} 
+
+{% block title%}Add Employee{% endblock title%}
+
+{% block body %}
+<div class="card shadow m-2">
+    <div class="card-body">
+        <h5 class="p-2 text-info" style="border-bottom: 2px solid silver"> Add Details </h5>
+
+        <div class="container-fluid ">
+            <form method="post" action="addemployee">
+                {% csrf_token %}
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label> Full Name </label>
+                            <input type="text" name="fullname" class="form-control" placeholder="Enter Full Name" pattern="^(\w\w+)\s(\w+)$" required>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label> Employee Id </label>
+                            <input type="text" name="empid" class="form-control" placeholder="Enter the valid id" pattern="[0-9]+" required>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label> Email Id</label>
+                            <input type="email" name="emailid" class="form-control" placeholder="Enter the email" required>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label> Mobile Number </label>
+                            <input type="text" name="mobile" class="form-control" placeholder="Enter mobile number" pattern="[0-9]+" required>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label> Department </label>
+                            <input type="text" name="department" class="form-control" placeholder="Enter the department" required>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label> Designation </label>
+                            <input type="text" name="designation" class="form-control" placeholder="Enter the designation" required>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label> Joining Date </label>
+                            <input type="date" name="joiningdate" class="form-control" >
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label> Gender</label>
+                            <select name="gender" class="form-control">
+                                <option value="None">Select Gender</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <input type="submit" value="Submit" class=" m-2 px-3 btn btn-secondary">
+            </form>
+        </div>
+    </div>
+</div>
+
+{% if error == "no" %}
+<script>
+    alert('Data Added Successfully');
+    window.location = ('{% url 'manager_home' %}');
+</script>
+{% endif %}
+{% if error == "yes" %}
+<script>
+    alert('Something wet wrong! Try Again...');
+</script>
+{% endif %}
+
+{% endblock body %}
+
+
+

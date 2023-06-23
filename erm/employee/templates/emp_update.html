@@ -1,0 +1,89 @@
+{% extends 'login_base.html' %} 
+
+{% block title%}Edit Employee{% endblock title%}
+
+{% block body %}
+<div class="card shadow m-2">
+    <div class="card-body">
+        <h5 class="p-2 text-info" style="border-bottom: 2px solid silver"> Update Details </h5>
+
+        <div class="container-fluid ">      
+            <form action="{% url 'do_emp_update' employee.id %}" method="POST">
+                {% csrf_token %}
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label> Full Name </label>
+                            <input type="text" name="fullname" class="form-control" placeholder="Enter Full Name" pattern="^(\w\w+)\s(\w+)$" required value="{{employee.fullname}}">
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label> Employee Id </label>
+                            <input type="text" name="emp_id" class="form-control" placeholder="Enter the valid id" pattern="[0-9]+" required value="{{employee.emp_id}}">
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label> Email Id</label>
+                            <input type="email" name="emailid" class="form-control" placeholder="Enter the email" required value="{{employee.emailid}}">
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label> Mobile Number </label>
+                            <input type="text" name="mobile" class="form-control" placeholder="Enter mobile number" pattern="[0-9]+" required value="{{employee.mobile}}">
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label> Department </label>
+                            <input type="text" name="department" class="form-control" placeholder="Enter the department" required value="{{employee.department}}">
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label> Designation </label>
+                            <input type="text" name="designation" class="form-control" placeholder="Enter the designation" required value="{{employee.designation}}">
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label> Joining Date </label>
+                            <input type="date" name="joiningdate" class="form-control" value="{{employee.joiningdate}}">
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label> Gender</label>
+                            <select name="gender" class="form-control" value="{{employee.gender}}">
+                                <option value="None">Select Gender</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <input type="submit" value="Submit" class=" m-2 px-3 btn btn-secondary">
+            </form>
+        </div>
+    </div>
+</div>
+
+{% comment %} {% if error == "no" %}
+<script>
+    alert('Data Added Successfully');
+    window.location = ('{% url 'manager_home' %}');
+</script>
+{% endif %}
+{% if error == "yes" %}
+<script>
+    alert('Something wet wrong! Try Again...');
+</script>
+{% endif %} {% endcomment %}
+
+{% endblock body %}
+
+
+

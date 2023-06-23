@@ -1,0 +1,50 @@
+{% extends "login_base.html" %}
+
+{% block title%}View Employee{% endblock title%}
+{% block body %}
+<table class="table table-border table-striped text-white">
+    <thead class="border-bottom font-weight-bold text-white">
+        <tr>
+            <td>Emp_Id</td>
+            <td>Full Name</td>
+            <td>Department</td>
+            <td>Designation</td>
+            <td>Mobile No.</td>
+            <td>Joining Date</td>
+            <td>Gender</td>    
+        </tr>
+    </thead>
+    <tbody>
+        {% for employee in view_employee %}
+            <tr>
+                <td>{{employee.emp_id}}</td>
+                <td>{{employee.fullname}}</td>
+                <td>{{employee.department}}</td>
+                <td>{{employee.designation}}</td>
+                <td>{{employee.mobile}}</td>
+                <td>{{employee.joiningdate}}</td>
+                <td>{{employee.gender}}</td>
+                
+
+                <td>
+                    <a href="{%url 'update' employee.id%}" class="btn text-secondary px-0">
+                        <i class="fas fa-edit fa-lg text-white"></i>
+                    </a>
+                    <a href="{%url 'delete' employee.id%}" class="btn text-secondary px-0">
+                        <i class="far fa-trash-alt fa-lg text-danger float-right"></i>
+                    </a>
+
+                    {% comment %} <form action="" method="post" class="d-inline">
+                        {% csrf_token %}
+                        <button type="submit" class="btn"> {% endcomment %}
+                            {% comment %} <i class="far fa-trash-alt fa-lg text-danger float-right"></i>
+                        </button> {% endcomment %}
+                        
+                    {% comment %} </form> {% endcomment %}
+                </td>    
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock body %}
